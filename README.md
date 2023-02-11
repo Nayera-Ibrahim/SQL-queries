@@ -7,6 +7,6 @@ Rockbuster Stealth LLC i s a movie rental company that used to have stores aroun
 
  ### Data
  A relational database comprising 17 tables contatining data on film rentals, customers, actors, payments and more.
-Full Data Set: http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip
+[Full Data Set](http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
 ### Visualisation
 [Link to viz](https://public.tableau.com/views/3_10_16663759890770/Customers?:language=en-GB&:display_count=n&:origin=viz_share_link)
