@@ -1,0 +1,64 @@
+#Check for and clean dirty data 
+Find out if the film table and the customer table contain any dirty data, specifically non-uniform or duplicate data.
+## Film table
+Duplicate data: Unique records under all column are counted. All unique values have a count value of 1. 
+Filtering the records with count value more than one shows the duplicate values.
+
+SELECT film_id, title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, last_update, special_features, fulltext,
+       COUNT(*)
+FROM film
+GROUP BY film_id, title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, last_update, special_features, fulltext
+HAVING COUNT (*)>1
+
+Non-uniform data: Unique records under all column are counted. All unique records are manually checked for non uniform fields.
+
+SELECT film_id, title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, last_update, special_features, fulltext,
+       COUNT(*)
+FROM film
+GROUP BY film_id, title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating, last_update, special_features, fulltext
+
+##Customer table
+Duplicate values
+
+SELECT customer_id, store_id, first_name, last_name, email, address_id, activebool, create_date, last_update, active,
+       COUNT(*)
+FROM customer
+GROUP BY customer_id, store_id, first_name, last_name, email, address_id, activebool, create_date, last_update, active
+HAVING COUNT (*)>1
+
+Non-uniform values
+
+SELECT customer_id, store_id, first_name, last_name, email, address_id, activebool, create_date, last_update, active,
+       COUNT(*)
+FROM customer
+GROUP BY customer_id, store_id, first_name, last_name, email, address_id, activebool, create_date, last_update, active
+
+#Summarize your data: 
+Use SQL to calculate descriptive statistics for both the film table and the customer table. 
+For numerical columns, this means finding the minimum, maximum, and average values. 
+For non-numerical columns, calculate the mode value
+
+2-	Language_id:
+SELECT mode () within group (order by language_id) AS language_id_mode
+FROM film;
+Output: 1
+
+Rating:
+SELECT mode () within group (order by rating) AS rating_mode
+FROM film;
+Output: PG-13
+
+Numeric values
+SELECT min(rental_duration) AS min_rent_duration,
+max(rental_duration) AS max_rent_duration,
+avg(rental_duration) AS average_rent_duration,
+min(rental_rate) AS min_rental_rate,
+max(rental_rate) AS max_rental_rate,
+avg(rental_rate) AS average_rental_rate,
+min(length) AS min_length,
+max(length) AS max_length,
+avg(length) AS average_length,
+min(replacement_cost) AS min_replacement_cost,
+max(replacement_cost) AS max_replacement_cost,
+avg(replacement_cost) AS average_replacement_cost
+FROM film;
