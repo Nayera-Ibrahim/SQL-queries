@@ -1,0 +1,30 @@
+# SQL querying
+Querying data from "Film" table
+
+SELECT film_id, title
+FROM film
+
+## Comparing costs
+EXPLAIN SELECT * FROM film.: costs 0.00 --64
+EXPLAIN SELECT film_id, title FROM film: costs: 0.00---64. Thus, there is no difference in cost.
+
+# Ordering the Data
+Movies sorted by title from A to Z, then by most recent release year, and then by highest to lowest rental rate.
+
+SELECT * FROM film
+ORDER BY title , release_year DESC, rental_rate desc;
+
+# Grouping Data
+What is the average, minimum and maximum rental rates for each rating category?
+
+SELECT DISTINCT rating, avg(rental_rate)
+From film
+Group by rating
+
+SELECT DISTINCT rating, min(rental_rate)
+From film
+Group by rating
+
+SELECT DISTINCT rating, max(rental_rate)
+From film
+Group by rating
